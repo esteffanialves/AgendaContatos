@@ -1,0 +1,11 @@
+Criação das pastas 
+
+ionic generate page contato/lista-contato
+ionic generate page contato/contato-add-edit
+ionic generate page contato/contato-detalhe
+
+
+ionic generate service services/contatos
+
+
+a Criação do modelo foi realizada manualmente também
