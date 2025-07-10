@@ -16,11 +16,13 @@ const routes: Routes = [
     loadChildren: () => import('./contato/lista-contato/lista-contato.module').then( m => m.ListaContatoPageModule)
   },
   {
-    path: 'contato-add-edit',
+    path: 'contato-add-edit/:id',
+    //adicionao o id na rota 
     loadChildren: () => import('./contato/contato-add-edit/contato-add-edit.module').then( m => m.ContatoAddEditPageModule)
   },
   {
-    path: 'contato-detalhe',
+    path: 'contato-detalhe/:id',
+    // adicionado oidna rota 
     loadChildren: () => import('./contato/contato-detalhe/contato-detalhe.module').then( m => m.ContatoDetalhePageModule)
   },
 ];

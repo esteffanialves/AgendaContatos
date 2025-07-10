@@ -46,7 +46,7 @@ export class ContatosService {
     if (contato.id > 0) {
       this.lista[this.getElementOfIndex(contato.id)] = contato;
 
-    // criar contato
+// criar contato
     } else {
       contato.id = this.lista[this.lista.length - 1].id + 1;
       this.lista.push(contato);

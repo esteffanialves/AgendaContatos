@@ -8,12 +8,19 @@ import { ContatoAddEditPageRoutingModule } from './contato-add-edit-routing.modu
 
 import { ContatoAddEditPage } from './contato-add-edit.page';
 
+import { ReactiveFormsModule } from '@angular/forms';
+// importar oreactive Forms para utilizar o Form Group 
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ContatoAddEditPageRoutingModule
+    ContatoAddEditPageRoutingModule,
+     ReactiveFormsModule
+  
+    
   ],
   declarations: [ContatoAddEditPage]
 })
