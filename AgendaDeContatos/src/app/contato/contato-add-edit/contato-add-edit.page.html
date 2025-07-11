@@ -1,48 +1,81 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Atualizar | Excluir Contato</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>{{ modoEdicao ? 'Editar Contato' : 'Novo Contato' }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  
-  <form [formGroup]="contatoForm" (submit)="submit()">
+<ion-content [fullscreen]="true" class="ion-padding">
 
-    <ion-item lines="none" [disabled]="!modoEdicao">
-      <ion-label position="floating" class="label-input-title">Nome</ion-label>
-      <ion-input formControlName="nome" type="text"></ion-input>
-    </ion-item>
+  <ion-card class="form-card">
+    <ion-card-header class="ion-text-center">
+      <ion-card-title>
+        <ion-icon name="person-circle-outline" class="form-avatar"></ion-icon>
+      </ion-card-title>
+    </ion-card-header>
 
-    <ion-item lines="none" [disabled]="!modoEdicao">
-      <ion-label position="floating" class="label-input-title">Telefone</ion-label>
-      <ion-input formControlName="telefone" type="text"></ion-input>
-    </ion-item>
+    <ion-card-content>
+      <form [formGroup]="contatoForm" (ngSubmit)="submit()">
 
-    <ion-item lines="none" [disabled]="!modoEdicao">
-      <ion-label position="floating" class="label-input-title">Email</ion-label>
-      <ion-input formControlName="email" type="email"></ion-input>
-    </ion-item>
+        <!-- Nome -->
+        <ion-item lines="inset" class="input-item" [disabled]="!modoEdicao">
+          <ion-label position="floating">Nome</ion-label>
+          <ion-input formControlName="nome" type="text"></ion-input>
+        </ion-item>
 
-    <ion-button shape="round" color="primary" expand="block" (click)="iniciarEdicao()" *ngIf="!modoEdicao">
-      Atualizar Contato
-    </ion-button>
-    <ion-button shape="round" color="primary" expand="block" *ngIf="!modoEdicao" routerLink="/lista-contato">
-      Voltar
-    </ion-button>
+        <!-- Telefone -->
+        <ion-item lines="inset" class="input-item" [disabled]="!modoEdicao">
+          <ion-label position="floating">Telefone</ion-label>
+          <ion-input formControlName="telefone" type="tel" inputmode="numeric"></ion-input>
+        </ion-item>
+        <ion-note slot="helper" color="danger"
+          *ngIf="contatoForm.controls['telefone'].invalid && contatoForm.controls['telefone'].touched">
+          O telefone deve conter exatamente 11 dígitos numéricos.
+        </ion-note>
 
-    <div *ngIf="modoEdicao">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6">
-            <ion-button shape="round" color="success" expand="block" type="submit">Salvar</ion-button>
-          </ion-col>
+        <!-- Email -->
+        <ion-item lines="inset" class="input-item" [disabled]="!modoEdicao">
+          <ion-label position="floating">Email</ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
 
-          <ion-col size="6">
-            <ion-button shape="round" color="warning" expand="block" (click)="cancelarEdicao()">Cancelar</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
+        <!-- Botões -->
+        <div class="ion-margin-top">
+          <!-- Visualização -->
+          <div *ngIf="!modoEdicao">
+            <ion-button expand="block" color="primary" (click)="iniciarEdicao()">
+              <ion-icon name="create-outline" slot="start"></ion-icon>
+              Editar Contato
+            </ion-button>
 
-  </form>
+            <ion-button expand="block" fill="clear" routerLink="/lista-contato">
+              <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+              Voltar
+            </ion-button>
+          </div>
+
+          <!-- Edição -->
+          <div *ngIf="modoEdicao">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-button expand="block" type="submit" color="success">
+                    <ion-icon name="save-outline" slot="start"></ion-icon>
+                    Salvar
+                  </ion-button>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-button expand="block" color="warning" (click)="cancelarEdicao()">
+                    <ion-icon name="close-outline" slot="start"></ion-icon>
+                    Cancelar
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </div>
+
+      </form>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

@@ -1,0 +1,32 @@
+.form-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+}
+
+
+.form-avatar {
+  font-size: 64px;
+  display: block;
+  margin: 0 auto;
+  color: #3a3a3a;
+  padding-top: 8px;
+}
+
+
+.input-item {
+  margin-bottom: 12px;
+}
+
+
+ion-item h2 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+ion-item p {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}

@@ -16,17 +16,26 @@ export class ListaContatoPage implements OnInit {
 
   //slidinglist -faz a lista arrastar e aparecer as opções
   @ViewChild('slidinglist') slidingList: IonList | undefined;
-  public lista = this.contatoService.getAll();
 
+  public lista: Contato[] = []; // lista de contatos
+  public apenasFavoritos = false; // controla exibição de favoritos
 
-//constrtutor -um método chamando quando a pagina é criada e chama dois serviços 
+  //constrtutor -um método chamando quando a pagina é criada e chama dois serviços 
   constructor(
     private contatoService: ContatosService,
     private toastService: ToastServiceService
   ) {}
 
+  ngOnInit() {
+    this.carregarLista();
+  }
 
-// uma função acionado quando clica para excluir contato
+  // uma função para carregar os contatos
+  carregarLista() {
+    this.lista = this.contatoService.getAll();
+  }
+
+  // uma função acionado quando clica para excluir contato
   async removerContato(contato: Contato) {
     this.contatoService.remove(contato);
     this.toastService.presentToast(
@@ -34,8 +43,20 @@ export class ListaContatoPage implements OnInit {
       3000,
       'bottom'
     );
+    this.carregarLista(); // recarrega a lista após remover
     await this.slidingList?.closeSlidingItems();
   }
 
-  ngOnInit() {}
+  // uma função acionada quando clica na estrela para favoritar
+  favoritar(contato: Contato) {
+    this.contatoService.toggleFavorito(contato);
+    this.carregarLista(); // recarrega a lista após favoritar
+  }
+
+  // uma função para filtrar favoritos quando toggle está ativo
+  get listaFiltrada(): Contato[] {
+    return this.apenasFavoritos
+      ? this.lista.filter(c => c.favorito)
+      : this.lista;
+  }
 }

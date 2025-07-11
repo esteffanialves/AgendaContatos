@@ -1,0 +1,27 @@
+.form-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+}
+
+.form-avatar {
+  font-size: 64px;
+  display: block;
+  margin: 0 auto;
+  color: #3a3a3a;
+}
+
+ion-card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+ion-item {
+  --padding-start: 8px;
+  margin-top: 8px;
+}
+
+ion-label {
+  font-size: 1rem;
+  color: #444;
+}

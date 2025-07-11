@@ -1,45 +1,79 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Contatos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  
-  <ion-fab vertical="top" horizontal="end" slot="fixed" edge="true">
-    <ion-fab-button routerLink='/contato-add-edit/-1'>
-      <ion-icon name="add"></ion-icon>
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <!-- Botão flutuante para adicionar novo contato -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/contato-add-edit/-1">
+      <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  
-  <ion-list #slidinglist>
-    <ion-item-sliding *ngFor="let contato of lista">
-      <ion-item> 
-        {{ contato.nome }}
+
+  <!-- Filtro de favoritos -->
+  <ion-item lines="none" class="filtro-toggle">
+    <ion-label>Mostrar apenas favoritos</ion-label>
+    <ion-toggle slot="end" [(ngModel)]="apenasFavoritos" color="warning"></ion-toggle>
+  </ion-item>
+
+  <!-- Lista de contatos estilizada -->
+  <ion-list *ngIf="listaFiltrada.length > 0; else semContatos">
+    <ion-item-sliding *ngFor="let contato of listaFiltrada" class="item-custom">
+      
+      <ion-item lines="inset">
+        <!-- Avatar -->
+        <ion-avatar slot="start">
+          <ion-icon name="person-circle-outline" class="avatar-icone"></ion-icon>
+        </ion-avatar>
+
+        <!-- Nome + dados -->
+        <ion-label>
+          <h2>{{ contato.nome }}</h2>
+          <p>{{ contato.telefone }}</p>
+          <p>{{ contato.email }}</p>
+        </ion-label>
+
+        <!-- Favoritar -->
+        <ion-button fill="clear" slot="end" (click)="favoritar(contato)">
+          <ion-icon
+            [name]="contato.favorito ? 'star' : 'star-outline'"
+            color="warning"
+            size="large">
+          </ion-icon>
+        </ion-button>
       </ion-item>
-      <ion-item-options>
 
-        <ion-item-option color="light">
-          <ion-icon name="create" slot="icon-only" 
-            routerLink="/contato-add-edit/{{contato.id}}">
-          </ion-icon>
+      <!-- Ações -->
+      <ion-item-options side="end">
+
+        <!-- Editar -->
+        <ion-item-option color="light" routerLink="/contato-add-edit/{{contato.id}}">
+          <ion-icon name="create-outline" slot="icon-only"></ion-icon>
         </ion-item-option>
 
-        <ion-item-option color="light">
-          <ion-icon name="eye-outline" slot="icon-only" 
-            routerLink="/contato-detalhe/{{contato.id}}">
-          </ion-icon>
+        <!-- Detalhe -->
+        <ion-item-option color="medium" routerLink="/contato-detalhe/{{contato.id}}">
+          <ion-icon name="eye-outline" slot="icon-only"></ion-icon>
         </ion-item-option>
 
-        <ion-item-option (click)="removerContato(contato)"
-          color="light">
-          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        <!-- Remover -->
+        <ion-item-option color="danger" (click)="removerContato(contato)">
+          <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
         </ion-item-option>
-
-        
-
 
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+
+  <!-- Nenhum contato -->
+  <ng-template #semContatos>
+    <div class="ion-text-center ion-margin-top">
+      <ion-icon name="people-circle-outline" style="font-size: 64px; color: lightgray;"></ion-icon>
+      <p class="ion-padding-top">Nenhum contato encontrado.</p>
+    </div>
+  </ng-template>
+
 </ion-content>

@@ -1,0 +1,41 @@
+ion-avatar {
+  background-color: #f4f4f4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.avatar-icone {
+  font-size: 40px;
+  color: #3a3a3a;
+}
+
+
+ion-item h2 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+ion-item p {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}
+
+
+.filtro-toggle {
+  margin-bottom: 10px;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  padding-inline: 10px;
+}
+
+
+.item-custom {
+  margin-bottom: 8px;
+  border-radius: 12px;
+  overflow: hidden;
+}

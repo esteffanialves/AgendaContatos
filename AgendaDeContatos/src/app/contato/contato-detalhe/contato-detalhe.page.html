@@ -1,13 +1,42 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>contato-detalhe</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Detalhes do Contato</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">contato-detalhe</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <ion-card class="form-card">
+    <ion-card-header class="ion-text-center">
+      <ion-icon name="person-circle-outline" class="form-avatar"></ion-icon>
+      <ion-card-title class="ion-margin-top">{{ contato?.nome }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-icon name="call-outline" slot="start" color="primary"></ion-icon>
+        <ion-label>{{ contato?.telefone }}</ion-label>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-icon name="mail-outline" slot="start" color="primary"></ion-icon>
+        <ion-label>{{ contato?.email }}</ion-label>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-icon
+          [name]="contato?.favorito ? 'star' : 'star-outline'"
+          slot="start"
+          color="warning">
+        </ion-icon>
+        <ion-label>{{ contato?.favorito ? 'Favorito' : 'Não Favorito' }}</ion-label>
+      </ion-item>
+
+      <ion-button expand="block" fill="outline" color="medium" class="ion-margin-top" routerLink="/lista-contato">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Voltar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
