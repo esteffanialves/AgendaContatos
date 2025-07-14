@@ -52,6 +52,7 @@ export class ContatoAddEditPage implements OnInit {
   ]
 });
 
+
   }
 
   // ativa o modo de edição se veio por ver
